@@ -80,27 +80,33 @@ Because stabilization is safety-critical, the Flight Controller operates at a hi
 
 # Copilot
 
-The Copilot is responsible for higher-level system management.
+The Copilot is responsible for monitoring, diagnosing and reporting the operational health of the aircraft.
 
 During the MVP it executes on the same ESP32 as the Flight Controller but is architecturally treated as an independent subsystem.
 
 Responsibilities include:
 
-- Collecting telemetry
-- Aggregating battery information
-- Receiving flight-state information
-- Preparing telemetry for transmission
-- Logging flight data
+- Collecting subsystem telemetry.
+- Aggregating system information.
+- Monitoring subsystem health.
+- Diagnosing abnormal system behavior.
+- Publishing SystemHealth.
+- Preparing telemetry for transmission.
+- Logging flight and system data.
 
 Future versions may also include:
 
-- GPS
-- Mission planning
-- Autonomous flight
-- Navigation
-- Data recording
+- GPS integration.
+- Mission planning.
+- Autonomous flight.
+- Navigation.
+- Data recording and playback.
+- Predictive fault detection.
+- Health analytics.
 
-The Copilot does **not** perform stabilization.
+The Copilot does **not** perform flight stabilization or generate actuator commands.
+
+It operates independently of the flight-critical control loop.
 
 ---
 
@@ -215,7 +221,7 @@ ESCs
 Motors
 ```
 
-The telemetry flow is:
+The system information flow is:
 
 ```
 Battery Monitoring System

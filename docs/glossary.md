@@ -47,13 +47,14 @@ Examples:
 
 # Interface
 
-A well-defined contract through which two subsystems exchange information.
+A well-defined contract through which two subsystems exchange information or energy.
 
 Interfaces are classified as:
 
 - Data
 - Command
 - Configuration
+- Power
 
 Interfaces define what is exchanged, not how it is implemented.
 
@@ -70,6 +71,7 @@ Examples:
 - IMUData
 - FlightState
 - BatteryState
+- SystemHealth
 
 ---
 
@@ -82,7 +84,7 @@ Commands express intent rather than implementation.
 Examples:
 
 - FlightCommands
-- MotorCommands
+- ActuatorCommand
 - ArmCommand
 
 ---
@@ -98,6 +100,20 @@ Examples:
 - PIDConfiguration
 - SensorCalibration
 - CommunicationConfiguration
+
+---
+
+# Power
+
+An interface through which electrical energy is transferred between subsystems.
+
+Power interfaces describe the flow of electrical energy rather than information.
+
+Examples:
+
+- BatteryPower
+- ThreePhaseDrive
+- RegulatedPower
 
 ---
 
@@ -148,8 +164,8 @@ The observable actions performed by a subsystem while fulfilling its responsibil
 Examples:
 
 - Controlled Landing
-- Publish Flight State
-- Transmit Motor Commands
+- Publish FlightState
+- Generate ThreePhaseDrive
 
 ---
 
@@ -185,6 +201,7 @@ Examples:
 - Ready
 - Armed
 - Flying
+- Landing
 - Fault
 
 ---
@@ -201,11 +218,34 @@ An operating mode entered when a failure prevents safe or correct operation.
 
 ---
 
-# Dependency
+# Dependency Classification
 
-A subsystem or interface required for another subsystem to fulfill its responsibilities.
+A categorization of a subsystem's direct external dependencies according to their impact on system operation.
 
-Dependencies are classified as:
+Only direct dependencies shall be documented. Transitive dependencies are intentionally omitted.
 
-- Required
+Dependency classifications are:
+
+- Flight-Critical
+- Mission-Critical
 - Optional
+
+---
+
+# Flight-Critical Dependency
+
+A direct external dependency whose loss prevents a subsystem from fulfilling its primary responsibility.
+
+---
+
+# Mission-Critical Dependency
+
+A direct external dependency required to accomplish the intended mission but not required to maintain safe operation.
+
+Loss of a mission-critical dependency shall be handled according to the appropriate policy.
+
+---
+
+# Optional Dependency
+
+A direct external dependency that extends system capability but is not required for safe operation.
