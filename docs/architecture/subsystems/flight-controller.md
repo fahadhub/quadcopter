@@ -30,9 +30,9 @@ The Flight Controller shall:
 
 | Interface | Producer | Type | Description |
 |-----------|----------|------|-------------|
-| IMUData | IMU | Data | Accelerometer and gyroscope measurements. |
-| FlightCommands | Communication Interface | Command | Flight commands received from the Ground Station. |
-
+| FlightCommands | Communication Interface | Command | Operator flight commands. |
+| IMUData | Inertial Measurement Unit (IMU) | Data | Raw inertial measurements. |
+| BatteryState | Battery Monitoring System (BMS) | Data | Current battery operating state. |
 ---
 
 ## Produces

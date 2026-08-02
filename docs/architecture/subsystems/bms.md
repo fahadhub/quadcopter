@@ -33,7 +33,8 @@ The BMS shall:
 
 | Interface | Consumer | Type | Description |
 |-----------|----------|------|-------------|
-| BatteryState | Copilot | Data | Current operating state of the battery. |
+| BatteryState | Flight Controller | Data | Current battery operating state used for flight-critical power management. |
+| BatteryState | Copilot | Data | Current battery operating state used for monitoring, diagnostics and reporting. |
 
 ---
 
