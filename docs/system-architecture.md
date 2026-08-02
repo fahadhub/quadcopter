@@ -72,7 +72,7 @@ Its responsibilities include:
 - Computing motor outputs
 - Driving the Electronic Speed Controllers
 
-The Flight Controller is the only subsystem that directly consumes IMU data.
+The Flight Controller is the primary consumer of IMU data for flight control. The Copilot also consumes IMU data for monitoring, diagnostics and reporting.
 
 Because stabilization is safety-critical, the Flight Controller operates at a high update frequency.
 
@@ -119,11 +119,11 @@ It provides:
 - Accelerometer measurements
 - Gyroscope measurements
 
-These measurements are sent exclusively to the Flight Controller.
+These measurements are published to both the Flight Controller and the Copilot.
 
-The Flight Controller processes this information to estimate the aircraft's orientation and motion.
+The Flight Controller uses IMUData for state estimation and flight control.
 
-The Copilot receives processed flight information from the Flight Controller rather than reading the IMU directly.
+The Copilot uses the same measurements for monitoring, diagnostics and reporting.
 
 ---
 
@@ -212,9 +212,11 @@ The motors contain no control logic.
 The primary control flow is:
 
 ```
-IMU
-    ↓
-Flight Controller
+        IMU
+       /   \
+      ▼     ▼
+Flight     Copilot
+Controller
     ↓
 ESCs
     ↓

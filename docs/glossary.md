@@ -105,14 +105,15 @@ Examples:
 
 # Power
 
-An interface through which electrical energy is transferred between subsystems.
+An interface through which energy is transferred between subsystems.
 
-Power interfaces describe the flow of electrical energy rather than information.
+Power interfaces describe the transfer of energy rather than information. Energy may be transferred in electrical, mechanical or other forms depending on the connected subsystems.
 
 Examples:
 
 - BatteryPower
 - ThreePhaseDrive
+- RotationalMotion
 - RegulatedPower
 
 ---
@@ -240,7 +241,7 @@ A direct external dependency whose loss prevents a subsystem from fulfilling its
 
 # Mission-Critical Dependency
 
-A direct external dependency required to accomplish the intended mission but not required to maintain safe operation.
+A direct external dependency required to accomplish the intended mission but not required for maintaining safe and controlled operation.
 
 Loss of a mission-critical dependency shall be handled according to the appropriate policy.
 
